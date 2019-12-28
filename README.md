@@ -151,4 +151,4 @@ The package dispatches a number of events when records are created or updated so
 2. Once you have submission(s) on a form , dont attempt to edit the form again bacause it will break the display of earlier submissions 3. 
 
 ## Acknowledgments
-Special Thanks to Farayola Oladele, one of the best Laravel programmers on Fiverr: https://www.fiverr.com/harristech He taught me so much and I highly recommend him for assistance on your Laravel projects.
+This repo was forked from: https://github.com/jazmy/laravel-formbuilder She did the hardest part of the library.
