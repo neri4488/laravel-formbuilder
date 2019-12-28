@@ -19,18 +19,18 @@ class CreateFormSubmissionsTable extends Migration
     public function up()
     {
         Schema::create('form_submissions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id',20);
 
-            $table->unsignedInteger('form_id');
+            $table->unsignedBigInteger('form_id');
 
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->index()->nullable();
 
             $table->text('content');
 
             $table->timestamps();
 
-            $table->foreign('form_id')->references('id')->on('forms')->onDelete('CASCADE');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->foreign('form_id')->references('id')->on('forms')->onDelete('RESTRICT')->onUpdate('CASCADE');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT')->onUpdate('CASCADE');
         });
     }
 
