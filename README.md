@@ -2,10 +2,6 @@
 
 A [Laravel](https://laravel.com) package for creating a drag-and-drop form builder using the [JQuery Form Builder](https://formbuilder.online).
 
-Demo: [http://demoform.jazmy.com/](http://demoform.jazmy.com/)
-
-*Note: Features like email, registration and file uploads are disabled in the demo*
-
 Screenshot:
 
 ![alt text](http://demoform.jazmy.com/img/formbuilderdemo_screenshot.jpg "Form Builder Screenshot")
@@ -46,7 +42,7 @@ This custom package takes a couple steps to install but I will try to make it as
 Edit your composer.json file manually or simply type
 
 ```bash
-composer require jazmy/jaz-form-builder
+composer require neri4488/laravel-form-builder
 ```
 
 ### Step Two:
