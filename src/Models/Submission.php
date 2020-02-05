@@ -183,7 +183,7 @@ class Submission extends Model
             if(isset($this->content[$key])){
                 $file_link = Storage::url($this->content[$key]);
 
-                if(getenv('APP_ENV') == 'Production'){ //Change if its in Production
+                if(strtoupper(getenv('APP_ENV')) == 'PRODUCTION'){ //Change if its in Production
                     $file_link = str_replace('storage/','storage/app/public/',$file_link);
                 }
 
