@@ -182,6 +182,9 @@ class Submission extends Model
 
             if(isset($this->content[$key])){
                 $file_link = Storage::url($this->content[$key]);
+
+                $file_link = str_replace('storage/','storage/app/public/',$file_link);
+
                 $str = "<a href='{$file_link}'>{$str}</a>";
             } else {
                 $str = "No file";
