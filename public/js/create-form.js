@@ -13,7 +13,7 @@ jQuery(function() {
 
     // create the form editor
     var fbEditor = $(document.getElementById('fb-editor'))
-    var formBuilder 
+    var formBuilder
     var fbOptions = {
         dataType: 'json',
         formData: window._form_builder_content ? window._form_builder_content : '',
@@ -29,7 +29,7 @@ jQuery(function() {
             'file',
         ],
         disableFields: [
-            'button', // buttons are not needed since we are the one handling the submission
+            'button' // buttons are not needed since we are the one handling the submission
         ],  // field types that should not be shown
         disabledAttrs: [
             // 'access',
@@ -51,13 +51,13 @@ jQuery(function() {
         roles: window.FormBuilder.form_roles || {},
         notify: {
             error: function(message) {
-              return swal('Error', message, 'error')
+                return swal('Error', message, 'error')
             },
             success: function(message) {
-              return swal('Success', message, 'success')
+                return swal('Success', message, 'success')
             },
             warning: function(message) {
-              return swal('Warning', message, 'warning');
+                return swal('Warning', message, 'warning');
             }
         },
         onSave: function() {
@@ -76,7 +76,7 @@ jQuery(function() {
     fbClearBtn.click(function(e) {
         e.preventDefault()
 
-        if (! formBuilder.actions.getData().length) return 
+        if (! formBuilder.actions.getData().length) return
 
         sConfirm("Are you sure you want to clear all fields from the form?", function() {
             formBuilder.actions.clearFields()
@@ -94,7 +94,7 @@ jQuery(function() {
         var form = $('#createFormForm')
 
         // make sure the form is valid
-        if ( ! form.parsley().validate() ) return 
+        if ( ! form.parsley().validate() ) return
 
         // make sure the form builder is not empty
         if (! formBuilder.actions.getData().length) {
@@ -121,8 +121,10 @@ jQuery(function() {
                 visibility: $('#visibility').val(),
                 allows_edit: $('#allows_edit').val(),
                 form_builder_json: formBuilderJSONData,
-                _token: window.FormBuilder.csrfToken
-            }
+                _token: window.FormBuilder.csrfToken,
+                ask_for_coordinates: $('#ask_for_coordinates').val(),
+                location_required: $('#location_required').val()
+            };
 
             var method = form.data('formMethod') ? 'PUT' : 'POST'
             jQuery.ajax({
@@ -132,40 +134,40 @@ jQuery(function() {
                 method: method,
                 cache: false,
             })
-            .then(function(response) {
-                fbSaveBtn.removeAttr('disabled')
-                fbClearBtn.removeAttr('disabled')
+                .then(function(response) {
+                    fbSaveBtn.removeAttr('disabled')
+                    fbClearBtn.removeAttr('disabled')
 
-                if (response.success) {
-                    // the form has been created 
-                    // send the user to the form index page
-                    swal({
-                        title: "Form Saved!",
-                        text: response.details || '',
-                        icon: 'success',
-                    })
+                    if (response.success) {
+                        // the form has been created
+                        // send the user to the form index page
+                        swal({
+                            title: "Form Saved!",
+                            text: response.details || '',
+                            icon: 'success',
+                        })
 
-                    setTimeout(function() {
-                        window.location = response.dest
-                    }, 1500);
+                        setTimeout(function() {
+                            //window.location = response.dest
+                        }, 1500);
 
-                    // clear out the form
-                    // $('#name').val('')
-                    // $('#visibility').val('')
-                    // $('#allows_edit').val('0')
-                } else {
-                    swal({
-                        title: "Error",
-                        text: response.details || 'Error',
-                        icon: 'error',
-                    })
-                }
-            }, function(error) {
-                handleAjaxError(error)
+                        // clear out the form
+                        // $('#name').val('')
+                        // $('#visibility').val('')
+                        // $('#allows_edit').val('0')
+                    } else {
+                        swal({
+                            title: "Error",
+                            text: response.details || 'Error',
+                            icon: 'error',
+                        })
+                    }
+                }, function(error) {
+                    handleAjaxError(error)
 
-                fbSaveBtn.removeAttr('disabled')
-                fbClearBtn.removeAttr('disabled')
-            })
+                    fbSaveBtn.removeAttr('disabled')
+                    fbClearBtn.removeAttr('disabled')
+                })
         })
 
     })
