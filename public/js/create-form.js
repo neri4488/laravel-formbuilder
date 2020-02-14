@@ -148,7 +148,7 @@ jQuery(function() {
                         })
 
                         setTimeout(function() {
-                            //window.location = response.dest
+                            window.location = response.dest
                         }, 1500);
 
                         // clear out the form
