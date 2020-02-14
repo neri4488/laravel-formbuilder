@@ -126,6 +126,8 @@ jQuery(function() {
                 location_required: $('#location_required').val()
             };
 
+            console.log(postData);
+
             var method = form.data('formMethod') ? 'PUT' : 'POST'
             jQuery.ajax({
                 url: form.attr('action'),
